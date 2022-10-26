@@ -2,7 +2,7 @@
 
 ###
 #
-# Description: This script will discover and download all available and supported programs for Ubuntu 20.04
+# Description: This script will discover and download all available and supported programs for Ubuntu
 #              from https://ericzimmerman.github.io/. Destination folder called ZimmermanTools-Ubuntu.
 #
 # Developer: @perox_
@@ -126,7 +126,7 @@ for project in ${projects[@]}; do
         # evtx -> EvtxECmd
         cp -r EvtxECmd/bin/Release/net6.0/linux-x64/publish $RELEASE_PATH/EvtxECmd
         cd $BIN_PATH
-        ln -s ../$RELEASE_FOLDER/EvtxECmd/EvtxECmd EvtxECmd        
+        ln -s ../$RELEASE_FOLDER/EvtxECmd/EvtxECmd EvtxECmd
     elif [ $project == "iisGeoLocate" ]; then
         # iisGeoLocate -> iisGeolocate
         cp -r iisGeolocate/bin/Release/net6.0/linux-x64/publish $RELEASE_PATH/iisGeolocate
