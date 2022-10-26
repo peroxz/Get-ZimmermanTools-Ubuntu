@@ -20,6 +20,10 @@ BIN_PATH="$BASE_PATH/$BIN_FOLDER"
 ZIP_FILENAME="ZimmermanTools-Ubuntu.zip"
 ZIP_PATH="$BASE_PATH/$ZIP_FILENAME"
 
+SUPPORTED_VERSIONS="16.04 18.04 20.04 22.04"
+SYSTEM=$(cat /etc/lsb-release | grep DISTRIB_ID | awk -F"=" '{print $2}' | tr '[A-Z]' '[a-z]')
+OSVERSION=$(cat /etc/lsb-release | grep DISTRIB_RELEASE | awk -F"=" '{print $2}')
+
 projects=(
     "AmcacheParser"
     "AppCompatCacheParser"
@@ -54,6 +58,24 @@ projects=(
     # XWFIM                 # Third party tool
 )
 
+supported_banner() {
+    echo -e "System not supported!"
+    echo -e "Only support for:"
+    echo -e " - Ubuntu 22.04"
+    echo -e " - Ubuntu 20.04"
+    echo -e " - Ubuntu 18.04"
+    echo -e " - Ubuntu 16.04"
+    exit 0
+}
+
+if [ $SYSTEM != "ubuntu" ]; then
+    supported_banner
+fi
+
+if [[ ! $SUPPORTED_VERSIONS =~ (^|[[:space:]])$OSVERSION($|[[:space:]]) ]]; then
+    supported_banner
+fi
+
 if [ -e $BASE_PATH ]; then
     rm -rf $BASE_PATH
 fi
@@ -61,9 +83,16 @@ fi
 mkdir -p $BASE_PATH $COMPILING_PATH $RELEASE_PATH $BIN_PATH
 cd $COMPILING_PATH
 
-# Check requirements
-echo -e "Download and install DEB package for Ubuntu 20.04: packages-microsoft-prod.deb"
-wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+# Check Docker requirements
+echo -e "Update APT repositories"
+sudo apt -y update
+
+echo -e "Install packages: wget zip git"
+sudo apt -y install wget zip git
+
+# Install requirements
+echo -e "Download and install DEB package for Ubuntu $OSVERSION: packages-microsoft-prod.deb"
+wget "https://packages.microsoft.com/config/ubuntu/$OSVERSION/packages-microsoft-prod.deb" -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 
@@ -97,7 +126,7 @@ for project in ${projects[@]}; do
         # evtx -> EvtxECmd
         cp -r EvtxECmd/bin/Release/net6.0/linux-x64/publish $RELEASE_PATH/EvtxECmd
         cd $BIN_PATH
-        ln -s ../$RELEASE_FOLDER/EvtxECmd/EvtxECmd EvtxECmd
+        ln -s ../$RELEASE_FOLDER/EvtxECmd/EvtxECmd EvtxECmd        
     elif [ $project == "iisGeoLocate" ]; then
         # iisGeoLocate -> iisGeolocate
         cp -r iisGeolocate/bin/Release/net6.0/linux-x64/publish $RELEASE_PATH/iisGeolocate
@@ -110,6 +139,13 @@ for project in ${projects[@]}; do
     fi
 done
 
+# Copy map files to EvtxECmd release path
+cp -r $COMPILING_PATH/evtx/evtx/Maps $RELEASE_PATH/EvtxECmd/.
+
+# Copy map files to SQLECmd release path
+cp -r $COMPILING_PATH/SQLECmd/SQLMap/Maps $RELEASE_PATH/SQLECmd/.
+
 # Zip bin and Release folders
 cd $BASE_PATH/..
 zip -y -r $ZIP_PATH $NAME/$RELEASE_FOLDER $NAME/$BIN_FOLDER
+rm -rf $COMPILING_PATH
