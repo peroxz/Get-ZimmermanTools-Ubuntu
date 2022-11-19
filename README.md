@@ -3,6 +3,21 @@
 ## Description
 Discover and download all available and supported programs for Ubuntu from https://ericzimmerman.github.io/
 
+Available tools:
+- AmcacheParser
+- AppCompatCacheParser
+- EvtxECmd
+- JLECmd
+- LECmd
+- MFTECmd
+- RBCmd
+- RECmd
+- RecentFileCacheParser
+- SQLECmd
+- WxTCmd
+- bstrings
+- iisGeolocate
+
 ## Project
 Check the project:
 - https://github.com/peroxz/Get-ZimmermanTools-Ubuntu
