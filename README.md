@@ -27,6 +27,10 @@ Available tools:
 - bstrings: Find them strings yo. Built in regex patterns. Handles locked files
 - iisGeolocate: Geolocate IP addresses found in IIS logs, extracts unique IPs, records bad data from logs
 
+You can find Maps folder for EvtxECmd and SQLECmd tools in the following paths:
+- ./ZimmermanTools-Ubuntu/Release/EvtxECmd/Maps
+- ./ZimmermanTools-Ubuntu/Release/SQLECmd/Maps
+
 ## Project
 Check the project:
 - https://github.com/peroxz/Get-ZimmermanTools-Ubuntu
