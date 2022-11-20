@@ -1,7 +1,16 @@
 # Get-ZimmermanTools-Ubuntu
 
 ## Description
-Discover and download all available and supported programs for Ubuntu from https://ericzimmerman.github.io/
+Discover and download all available and supported programs for Ubuntu from https://ericzimmerman.github.io/.
+
+Supported Ubuntu versions:
+- Ubuntu 16.04
+- Ubuntu 18.04
+- Ubuntu 20.04 (recommended)
+- Ubuntu 22.04
+
+Each tool is compiled using .NET6 framework from Microsoft:
+- dotnet-sdk-6.0
 
 Available tools:
 - AmcacheParser: Amcache.hve parser with lots of extra features. Handles locked files
@@ -23,11 +32,64 @@ Check the project:
 - https://github.com/peroxz/Get-ZimmermanTools-Ubuntu
 - https://hub.docker.com/r/perox/zimmermantools-ubuntu
 
+## Script
+Get-ZimmermanTools-Ubuntu.sh is a BASH script for Ubuntu to install dependencies and and generate binaries from Eric Zimmerman repository:
+- https://github.com/EricZimmerman
+
+Run the script:
+
+```
+$ chmod +x Get-ZimmermanTools-Ubuntu.sh
+$ ./Get-ZimmermanTools-Ubuntu.sh
+```
+
+The script will generate the following folders and files:
+- ZimmermanTools-Ubuntu: new folder with all files inside.
+- ZimmermanTools-Ubuntu.zip: compiled tools from Eric Zimmerman repository in ZIP file to copy to other hosts.
+- Release: libraries and compiled tools.
+- bin: direct link to binaries.
+
+```
+Get-ZimmermanTools-Ubuntu.sh
+|_ ZimmermanTools-Ubuntu
+  |_ ZimmermanTools-Ubuntu.zip
+  |_ bin
+  |  |_ AmcacheParser -> ../Release/AmcacheParser/AmcacheParser
+  |  |_ AppCompatCacheParser -> ../Release/AppCompatCacheParser/AppCompatCacheParser
+  |  |_ bstrings -> ../Release/bstrings/bstrings
+  |  |_ EvtxECmd -> ../Release/EvtxECmd/EvtxECmd
+  |  |_ iisGeolocate -> ../Release/iisGeolocate/iisGeolocate
+  |  |_ JLECmd -> ../Release/JLECmd/JLECmd
+  |  |_ LECmd -> ../Release/LECmd/LECmd
+  |  |_ MFTECmd -> ../Release/MFTECmd/MFTECmd
+  |  |_ RBCmd -> ../Release/RBCmd/RBCmd
+  |  |_ RecentFileCacheParser -> ../Release/RecentFileCacheParser/RecentFileCacheParser
+  |  |_ RECmd -> ../Release/RECmd/RECmd
+  |  |_ SQLECmd -> ../Release/SQLECmd/SQLECmd
+  |  |_ WxTCmd -> ../Release/WxTCmd/WxTCmd
+  |_ Release
+    |_ AmcacheParser
+    |_ AppCompatCacheParser
+    |_ bstrings
+    |_ EvtxECmd
+    |_ iisGeolocate
+    |_ JLECmd
+    |_ LECmd
+    |_ MFTECmd
+    |_ RBCmd
+    |_ RecentFileCacheParser
+    |_ RECmd
+    |_ SQLECmd
+    |_ WxTCmd
+```
+
 ## Docker
+
 Download Docker image:
 ```
 $ docker pull perox/zimmermantools-ubuntu:20.04
 ```
+
 Get help:
 ```
 $ docker run --rm -v $(pwd):/data perox/zimmermantools-ubuntu:20.04
