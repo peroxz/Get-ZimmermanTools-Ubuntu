@@ -89,7 +89,13 @@ Get-ZimmermanTools-Ubuntu.sh
 
 ## Docker
 
-Download Docker image:
+How to create Docker image:
+```
+$ docker build . -t perox/zimmermantools-ubuntu:20.04
+$ docker images | grep "perox/zimmermantools-ubuntu:20.04"
+```
+
+Download Docker image from public repository:
 ```
 $ docker pull perox/zimmermantools-ubuntu:20.04
 ```
