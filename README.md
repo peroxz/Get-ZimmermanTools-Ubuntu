@@ -4,19 +4,19 @@
 Discover and download all available and supported programs for Ubuntu from https://ericzimmerman.github.io/
 
 Available tools:
-- AmcacheParser
-- AppCompatCacheParser
-- EvtxECmd
-- JLECmd
-- LECmd
-- MFTECmd
-- RBCmd
-- RECmd
-- RecentFileCacheParser
-- SQLECmd
-- WxTCmd
-- bstrings
-- iisGeolocate
+- AmcacheParser: Amcache.hve parser with lots of extra features. Handles locked files
+- AppCompatCacheParser: AppCompatCache aka ShimCache parser. Handles locked files
+- EvtxECmd: Event log (evtx) parser with standardized CSV, XML, and json output! Custom maps, locked file support, and more!
+- JLECmd: Jump List parser
+- LECmd: Parse lnk files
+- MFTECmd: $MFT, $Boot, $J, $SDS, $I30, and $LogFile (coming soon) parser. Handles locked files
+- RBCmd: Recycle Bin artifact (INFO2/$I) parser
+- RECmd: Powerful command line Registry tool searching, multi-hive support, plugins, and more
+- RecentFileCacheParser: RecentFileCache parser
+- SQLECmd: Find and process SQLite files according to your needs with maps!
+- WxTCmd: View CSV and Excel files, filter, group, sort, etc. with ease
+- bstrings: Find them strings yo. Built in regex patterns. Handles locked files
+- iisGeolocate: Geolocate IP addresses found in IIS logs, extracts unique IPs, records bad data from logs
 
 ## Project
 Check the project:
